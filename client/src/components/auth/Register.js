@@ -2,8 +2,14 @@ import React, { Fragment, useState } from 'react';
 import {Link} from 'react-router-dom';
 import {Form, Input, Grid,Button, Header,Icon} from 'semantic-ui-react';
 import axios from 'axios';
+import {connect} from 'react-redux';
+import{setAlert} from '../../actions/alert';
+import{register} from '../../actions/auth';
+import PropTypes from 'prop-types';
+import Alert from '../layout/Alert';
 
-const Register = () => {
+
+const Register = ({setAlert,register}) => {
 
     //useState hooks
     const[formData,setFormData] = useState({
@@ -20,32 +26,12 @@ const Register = () => {
     const onSubmit=async e=>{
         e.preventDefault();
         if(pass1!==pass2){
-            console.log('passwords not matched');
+            setAlert('passwords not matched','orange');
         }else{
-            const newUser={
-                name,email,password:pass1
-            }
 
-            try{
-                const config={
-
-                    headers:{
-                        'Content-Type':'application/json'
-                    }
-                }
-
-                const body = JSON.stringify(newUser);
-
-                const res = await axios.post('/api/users',body,config);
-
-                console.log(res.data);
-
-            }catch(err){
-                console.error(err.response.data);
-            }
+            register({name,email,password:pass1});
         }
     }
-
 
     return (
        <Fragment>
@@ -56,6 +42,7 @@ const Register = () => {
            <Grid >
                <Grid.Row centered >
                    <Grid.Column mobile={14} tablet={10} computer={6} >
+                   <Alert/> 
            <Form size="big" style={{'margin':'auto'}} onSubmit={e=>onSubmit(e)}>
                 <Form.Field  required >
                     <label >Name</label>
@@ -83,6 +70,11 @@ const Register = () => {
            </Grid>
        </Fragment>
     )
+};
+
+Register.propTypes={
+    setAlert:PropTypes.func.isRequired,
+    register:PropTypes.func.isRequired
 }
 
-export default Register;
+export default connect(null,{setAlert,register})(Register);

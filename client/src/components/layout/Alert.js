@@ -4,18 +4,18 @@ import {connect} from 'react-redux'
 
 import { Message,Divider } from 'semantic-ui-react'
 
-import Shake from 'react-reveal/Shake';
+import Slide from 'react-reveal/Slide';
 
 
 const Alert = ({alerts}) => 
     alerts !== null && alerts.length > 0 && alerts.map(alert =>(
         
-        <Shake>  
+        <Slide left>  
             <div key={alert.id} mobile={14} tablet={10} computer={6}>
                 <Message color={`${alert.alertType}`}>{alert.msg}</Message>
                 <Divider hidden />
             </div>
-        </Shake>
+        </Slide>
        
             
     ))

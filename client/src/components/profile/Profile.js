@@ -6,6 +6,7 @@ import { getProfileById } from "../../actions/profile"
 import LoadingScreen from "../layout/LoadingScreen"
 import { Button } from "semantic-ui-react"
 import ProfileTop from "./ProfileTop"
+import ProfileAbout from "./ProfileAbout"
 
 const Profile = ({
   match,
@@ -36,6 +37,7 @@ const Profile = ({
             )}
 
             <ProfileTop profile={profile}/>
+            <ProfileAbout profile={profile}/>
         </Fragment>
       )}
     </Fragment>

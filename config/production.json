@@ -1,0 +1,4 @@
+{
+    "mongoURI": "mongodb+srv://dkt123:dkt123@devconn.atqc4.mongodb.net/devconn_db?retryWrites=true&w=majority",
+    "jwtSecret": "dkt007"
+}

@@ -13,6 +13,12 @@ const Navbar = ({auth:{isAuthenticated,loading},logout})=>{
 
     const authLinks = (
         <Fragment>
+          <Menu.Item as={Link} to="/posts"
+              name='posts'
+              active={activeItem === 'posts'}
+              onClick={()=>setActiveItem('posts')}
+              color="teal"
+            />
             <Menu.Item as={Link} to="/profiles"
               name='users'
               onClick={()=>setActiveItem('users')}
